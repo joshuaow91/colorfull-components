@@ -4,31 +4,31 @@ export const restaurants: Restaurant[] = [
   {
     id: 1,
     name: "Pizza Place",
-    image: "/pizza1.png",
+    image: "/pizza2.png",
   },
   {
     id: 2,
     name: "Sushi House",
-    image: "/sushi1.png",
+    image: "/sushi2.png",
   },
   {
     id: 3,
     name: "Burger Joint",
-    image: "/burger1.png",
+    image: "/burger2.png",
   },
   {
     id: 4,
     name: "Taco Spot",
-    image: "/taco1.png",
+    image: "/taco2.png",
   },
   {
     id: 5,
     name: "Pasta Corner",
-    image: "/pasta1.png",
+    image: "/pasta2.png",
   },
   {
     id: 6,
     name: "Salad Bar",
-    image: "/salad1.png",
+    image: "/salad2.png",
   },
 ];
