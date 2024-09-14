@@ -1,14 +1,5 @@
 import { motion } from "framer-motion";
-import { MenuItem } from "./MenuSelection";
-import { RefObject } from "react";
-
-type DropAreaProps = {
-  dropAreaRef: RefObject<HTMLDivElement>;
-  isOverDropArea: boolean;
-  setIsOverDropArea: (value: boolean) => void;
-  isDragging: boolean;
-  droppedItems: MenuItem[];
-};
+import { DropAreaProps } from "../../types/dropAreaPropTypes";
 
 export default function DropArea({
   dropAreaRef,

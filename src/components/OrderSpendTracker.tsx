@@ -2,20 +2,10 @@ import { useState } from "react";
 import ProgressTracker from "./ProgressTracker";
 import RestaurantSelection from "./RestaurantStep/RestaurantSelector";
 import MenuStep from "./MenuStep/MenuStep";
-import OrderSummary from "./OrderSummary";
-import { MenuItem } from "./MenuStep/MenuSelection";
+import OrderSummary from "./SummaryStep/OrderSummary";
+import { MenuItem } from "../types/menuItemTypes";
 import BudgetInput from "./BudgetStep/BudgetInput";
-
-const menuItemsForRestaurants: Record<number, MenuItem[]> = {
-  1: [
-    { id: 1, name: "Pepperoni Pizza", cost: 10.0 },
-    { id: 2, name: "Cheese Pizza", cost: 8.0 },
-  ],
-  2: [
-    { id: 3, name: "Salmon Roll", cost: 12.0 },
-    { id: 4, name: "Tuna Roll", cost: 15.0 },
-  ],
-};
+import { menuItemsForRestaurants } from "../data/menuItems";
 
 export default function OrderSpendTracker() {
   const [step, setStep] = useState(1);

@@ -1,19 +1,9 @@
 import { useRef, useState } from "react";
-import MenuSelection, { MenuItem } from "./MenuSelection";
+import MenuSelection from "./MenuSelection";
 import DropArea from "./DropArea";
 import SpendTrack from "./SpendTrackGradientBar";
-
-type MenuStepProps = {
-  menuItems: MenuItem[];
-  budget: number;
-  spend: number;
-  setSpend: (value: number) => void;
-  progress: number;
-  setProgress: (value: number) => void;
-  overBudget: boolean;
-  setOrderedItems: (items: MenuItem[]) => void; // New prop
-  setOverBudget: (value: boolean) => void;
-};
+import { MenuStepProps } from "../../types/menuStepPropTypes";
+import { MenuItem } from "../../types/menuItemTypes";
 
 export default function MenuStep({
   menuItems,

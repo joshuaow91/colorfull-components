@@ -1,18 +1,7 @@
 import { motion, useMotionValue } from "framer-motion";
-import { RefObject, useState } from "react";
-
-export type MenuItem = {
-  id: number;
-  name: string;
-  cost: number;
-};
-
-type MenuSelectionProps = {
-  menu: MenuItem;
-  handleDrop: (menu: MenuItem) => void;
-  dropAreaRef: RefObject<HTMLDivElement>;
-  setIsDragging: (isDragging: boolean) => void;
-};
+import { useState } from "react";
+import { MenuSelectionProps } from "../../types/menuSelectionPropTypes";
+import { MenuItem } from "../../types/menuItemTypes";
 
 export default function MenuSelection({
   menu,
