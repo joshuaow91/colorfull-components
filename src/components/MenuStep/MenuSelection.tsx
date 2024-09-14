@@ -7,32 +7,29 @@ export type MenuItem = {
   cost: number;
 };
 
-type MenuItemProps = {
+type MenuSelectionProps = {
   menu: MenuItem;
   handleDrop: (menu: MenuItem) => void;
   dropAreaRef: RefObject<HTMLDivElement>;
-  resetKey: number;
+  setIsDragging: (isDragging: boolean) => void;
 };
 
-export default function MenuItem({
+export default function MenuSelection({
   menu,
   handleDrop,
   dropAreaRef,
-  resetKey,
-}: MenuItemProps) {
+  setIsDragging,
+}: MenuSelectionProps) {
   const [isDropped, setIsDropped] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   const handleDropWithAnimation = (menu: MenuItem) => {
     setIsDropped(true);
-
     setTimeout(() => {
       handleDrop(menu);
-
       x.set(0);
       y.set(0);
-
       setIsDropped(false);
     }, 500);
   };
@@ -46,9 +43,11 @@ export default function MenuItem({
       style={{ x, y }}
       whileDrag={{ scale: 1.1 }}
       dragTransition={{ bounceStiffness: 500, bounceDamping: 20 }}
-      key={`menu-${resetKey}-${menu.id}`}
-      onDragEnd={() => handleDropWithAnimation(menu)}
-      initial={{ x: 0, y: 0 }}
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={() => {
+        handleDropWithAnimation(menu);
+        setIsDragging(false);
+      }}
       animate={isDropped ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
