@@ -1,4 +1,4 @@
-import { MenuItem } from "./menuItemTypes";
+import { MenuItem } from "../types/menuItemTypes";
 import { RefObject } from "react";
 
 export type MenuSelectionProps = {

@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
-
-type ProgressTrackerProps = {
-  step: number;
-};
+import { ProgressTrackerProps } from "../propTypes/progressTrackerPropTypes";
 
 export default function ProgressTracker({ step }: ProgressTrackerProps) {
   return (

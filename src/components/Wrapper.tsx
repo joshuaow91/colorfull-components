@@ -1,9 +1,5 @@
 import { motion } from "framer-motion";
-
-interface WrapperProps {
-  children?: React.ReactNode;
-  className?: string;
-}
+import { WrapperProps } from "../propTypes/wrapperPropTypes";
 
 export default function Wrapper({ children, className = "" }: WrapperProps) {
   return (

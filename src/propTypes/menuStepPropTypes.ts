@@ -1,4 +1,4 @@
-import { MenuItem } from "./menuItemTypes";
+import { MenuItem } from "../types/menuItemTypes";
 
 export type MenuStepProps = {
   menuItems: MenuItem[];

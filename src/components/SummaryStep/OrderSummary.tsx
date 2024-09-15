@@ -1,4 +1,4 @@
-import { OrderSummaryProps } from "../../types/orderSummaryPropTypes";
+import { OrderSummaryProps } from "../../propTypes/orderSummaryPropTypes";
 
 export default function OrderSummary({
   items,

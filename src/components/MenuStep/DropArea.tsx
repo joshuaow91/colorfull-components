@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { DropAreaProps } from "../../types/dropAreaPropTypes";
+import { DropAreaProps } from "../../propTypes/dropAreaPropTypes";
 
 export default function DropArea({
   dropAreaRef,

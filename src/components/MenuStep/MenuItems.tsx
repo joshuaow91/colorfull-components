@@ -1,6 +1,6 @@
 import { motion, useMotionValue } from "framer-motion";
 import { useState } from "react";
-import { MenuSelectionProps } from "../../types/menuSelectionPropTypes";
+import { MenuSelectionProps } from "../../propTypes/menuSelectionPropTypes";
 import { MenuItem } from "../../types/menuItemTypes";
 
 export default function MenuSelection({

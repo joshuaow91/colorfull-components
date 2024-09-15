@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import MenuSelection from "./MenuItems";
 import DropArea from "./DropArea";
 import SpendTrack from "./SpendTrackGradientBar";
-import { MenuStepProps } from "../../types/menuStepPropTypes";
+import { MenuStepProps } from "../../propTypes/menuStepPropTypes";
 import { MenuItem } from "../../types/menuItemTypes";
 import {
   ListBulletIcon,
