@@ -7,4 +7,13 @@ export type DropAreaProps = {
   setIsOverDropArea: (value: boolean) => void;
   isDragging: boolean;
   droppedItems: MenuItem[];
+  removeItem: (itemId: number) => void;
+  isListView: boolean;
+};
+
+export type DroppedItemProps = {
+  id: number;
+  name: string;
+  cost: number;
+  removeItem: (id: number) => void;
 };

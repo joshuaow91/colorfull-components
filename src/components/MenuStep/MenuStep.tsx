@@ -4,8 +4,10 @@ import DropArea from "./DropArea";
 import SpendTrack from "./SpendTrackGradientBar";
 import { MenuStepProps } from "../../propTypes/menuStepPropTypes";
 import { MenuItem } from "../../types/menuItemTypes";
+import { motion } from "framer-motion";
 import {
   ListBulletIcon,
+  PlusCircleIcon,
   TrashIcon,
   ViewColumnsIcon,
 } from "@heroicons/react/16/solid";
@@ -39,6 +41,14 @@ export default function MenuStep({
     setIsGridView((prev) => !prev);
   };
 
+  const removeItem = (itemId: number) => {
+    const filteredItems = droppedItems.filter((item) => item.id !== itemId);
+    const totalSpend = filteredItems.reduce((sum, item) => sum + item.cost, 0);
+    setDroppedItems(filteredItems);
+    setSpend(totalSpend);
+    setOrderedItems(filteredItems);
+  };
+
   const resetCart = () => {
     setDroppedItems([]);
     setSpend(0);
@@ -49,16 +59,19 @@ export default function MenuStep({
   const progress = calculateProgress(spend);
 
   return (
-    <div>
+    <div className="relative">
       <h2 className="font-bold block font-righteous text-4xl text-darkGreen tracking-tighter text-center mb-6">
-        Choose Item(s)
+        Choose Menu Item(s)
       </h2>
-      <SpendTrack
-        progress={progress}
-        spend={spend}
-        overBudget={isOverBudget}
-        budget={budget}
-      />
+
+      <div className="sticky top-0 z-10 bg-lightGreen/30 backdrop-blur-md py-2">
+        <SpendTrack
+          progress={progress}
+          spend={spend}
+          overBudget={isOverBudget}
+          budget={budget}
+        />
+      </div>
 
       <div className="flex justify-end gap-2 mb-4">
         <button
@@ -92,23 +105,27 @@ export default function MenuStep({
           ))}
         </div>
       ) : (
-        <div className="space-y-2 mb-4">
+        <div className="flex flex-col gap-y-2 mb-4">
           {menuItems.map((menuItem) => (
-            <div
+            <motion.div
               key={menuItem.id}
-              className="flex justify-between items-center bg-coral text-lightBeige p-4 rounded-xl shadow-md"
+              className="flex justify-between w-full items-center bg-offWhite text-coral font-semibold p-4 rounded-xl shadow-md"
+              whileHover={{ boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
+              transition={{ duration: 0.3 }}
             >
-              <span className="text-xl">{menuItem.name}</span>
-              <span className="text-lg font-bold">
-                ${menuItem.cost.toFixed(2)}
-              </span>
+              <div className="space-x-4">
+                <span className="text-lg font-bold bg-coral text-offWhite p-2 px-4 rounded-md">
+                  ${menuItem.cost.toFixed(2)}
+                </span>
+                <span className="text-xl">{menuItem.name} </span>
+              </div>
               <button
                 onClick={() => handleDrop(menuItem)}
-                className="flex items-center bg-lightBeige text-coral px-3 py-1 rounded-full shadow-md hover:bg-gray-200"
+                className="flex items-center bg-green-500 text-white px-3 py-1 rounded-full shadow-md hover:bg-green-600"
               >
-                Add
+                <PlusCircleIcon className="h-4 w-4 mr-2" /> Add
               </button>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}
@@ -119,6 +136,8 @@ export default function MenuStep({
         setIsOverDropArea={setIsOverDropArea}
         isDragging={isDragging}
         droppedItems={droppedItems}
+        removeItem={removeItem}
+        isListView={!isGridView}
       />
 
       <div className="flex justify-between mt-4">

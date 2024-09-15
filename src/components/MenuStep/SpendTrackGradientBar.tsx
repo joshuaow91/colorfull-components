@@ -1,12 +1,6 @@
 import { motion } from "framer-motion";
 import { formatCurrency } from "../../utils/formatCurrency";
-
-type SpendTrackProps = {
-  progress: number;
-  spend: number;
-  overBudget: boolean;
-  budget: number | null;
-};
+import { SpendTrackProps } from "../../propTypes/spendTrackPropTypes";
 
 export default function SpendTrack({
   progress,
@@ -31,27 +25,26 @@ export default function SpendTrack({
         </motion.div>
       )}
 
-      <div className="w-full h-8 bg-gray-300 rounded-full overflow-hidden">
+      <div className="w-full h-8 bg-gray-200 rounded-full overflow-hidden relative">
         <motion.div
           className="h-full bg-gradient-to-r from-orange-400 to-green-500 rounded-full"
-          key={progress}
-          initial={{ width: 0 }}
+          style={{ width: `${progress}%` }}
           animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.8 }}
+          transition={{ ease: "linear", duration: 0.5 }}
+        />
+
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center h-full text-darkGreen font-bold"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+            delay: 0.3,
+          }}
         >
-          <motion.div
-            className="absolute inset-x-0 top-0 flex justify-center items-center h-full text-white font-bold"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 10,
-              delay: 0.3,
-            }}
-          >
-            ${formatCurrency(spend)}
-          </motion.div>
+          ${formatCurrency(spend)}
         </motion.div>
 
         {overBudget && (

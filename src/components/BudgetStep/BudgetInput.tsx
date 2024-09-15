@@ -1,14 +1,8 @@
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 import { ArrowRightCircleIcon } from "@heroicons/react/16/solid";
-
-type BudgetInputProps = {
-  handleBudgetSubmit: (inputBudget: number) => void;
-};
-
-type FormValues = {
-  inputBudget: number;
-};
+import { BudgetInputProps, FormValues } from "../../types/budgetTypes";
+import { handleInputChange } from "../../utils/formatBudgetInput";
 
 export default function BudgetInput({ handleBudgetSubmit }: BudgetInputProps) {
   const { control, handleSubmit, setValue } = useForm<FormValues>({
@@ -19,22 +13,12 @@ export default function BudgetInput({ handleBudgetSubmit }: BudgetInputProps) {
 
   const [displayValue, setDisplayValue] = useState<string>("0.00");
 
-  const formatCurrency = (value: number): string => {
-    return (value / 100).toFixed(2);
-  };
-
-  const handleInputChange = (value: string) => {
-    const numericValue = parseInt(value.replace(/[^0-9]/g, ""), 10) || 0;
-    setDisplayValue(formatCurrency(numericValue));
-    setValue("inputBudget", numericValue);
-  };
-
   const onSubmit = (data: FormValues) => {
     handleBudgetSubmit(data.inputBudget / 100);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-3xl mt-8 mx-auto space-y-8">
+    <div className="flex flex-col items-center justify-center max-w-5xl mt-16 mx-auto">
       <h2 className="font-bold font-righteous text-4xl text-darkGreen tracking-tighter text-center">
         Set Spend Budget
       </h2>
@@ -49,7 +33,9 @@ export default function BudgetInput({ handleBudgetSubmit }: BudgetInputProps) {
                 {...field}
                 type="text"
                 value={`$${displayValue}`}
-                onChange={(e) => handleInputChange(e.target.value)}
+                onChange={(e) =>
+                  handleInputChange(e.target.value, setDisplayValue, setValue)
+                }
                 inputMode="numeric"
                 className="text-8xl sm:text-9xl font-bold font-righteous bg-transparent border-none outline-none focus:ring-0 appearance-none transition-colors duration-300 text-darkGreen text-center"
               />

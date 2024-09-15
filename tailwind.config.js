@@ -8,6 +8,7 @@ export default {
         darkGreen: "#425f57",
         lightBeige: "#fff3e2",
         coral: "#f28181",
+        offWhite: "#fcfcf9",
       },
       fontFamily: {
         righteous: ["Righteous", "cursive"],

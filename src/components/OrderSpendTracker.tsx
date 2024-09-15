@@ -8,6 +8,7 @@ import BudgetInput from "./BudgetStep/BudgetInput";
 import { menuItemsForRestaurants } from "../data/menuItems";
 import Wrapper from "./Wrapper";
 import { ArrowRightCircleIcon } from "@heroicons/react/16/solid";
+import { motion } from "framer-motion";
 
 export default function OrderSpendTracker() {
   const [step, setStep] = useState(1);
@@ -34,14 +35,24 @@ export default function OrderSpendTracker() {
   };
 
   return (
-    <div className="p-8 max-w-5xl mx-auto text-zinc-900">
+    <div className="p-8 max-w-5xl mx-auto text-zinc-900 w-full">
       <ProgressTracker step={step} />
 
       {step > 1 && (
-        <button onClick={prevStep} className="ml-4">
-          {" "}
-          &lsaquo; <span className="underline">Back</span>
-        </button>
+        <motion.button
+          key={step}
+          onClick={prevStep}
+          className="ml-12 mt-4"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.5 }}
+        >
+          &lsaquo;{" "}
+          <span className="underline text-darkGreen hover:no-underline">
+            Back
+          </span>
+        </motion.button>
       )}
 
       {step === 1 && <BudgetInput handleBudgetSubmit={handleBudgetSubmit} />}
@@ -84,8 +95,11 @@ export default function OrderSpendTracker() {
       )}
 
       {step > 2 && step < 4 && (
-        <button onClick={nextStep} className="flex justify-end w-full pt-6">
-          <ArrowRightCircleIcon className="h-12 w-12 text-coral" />
+        <button
+          onClick={nextStep}
+          className="flex items-center gap-2 justify-end w-full pt-6 text-darkGreen"
+        >
+          Review Order <ArrowRightCircleIcon className="h-12 w-12 text-coral" />
         </button>
       )}
     </div>

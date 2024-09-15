@@ -1,3 +1,3 @@
 export type ProgressTrackerProps = {
-    step: number;
-  };
+  step: number;
+};

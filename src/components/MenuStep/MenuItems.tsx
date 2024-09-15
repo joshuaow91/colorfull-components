@@ -25,7 +25,7 @@ export default function MenuSelection({
 
   return (
     <motion.div
-      className="relative p-4 rounded-xl bg-coral text-lightBeige cursor-pointer font-bold"
+      className="relative p-4 rounded-xl bg-offWhite text-darkGreen cursor-pointer font-bold"
       drag
       dragConstraints={dropAreaRef}
       dragElastic={0.5}
@@ -39,14 +39,13 @@ export default function MenuSelection({
       }}
       whileHover={{
         boxShadow: "0px 20px 30px rgba(0, 0, 0, 0.2)",
-        backgroundColor: "#f88a8a",
         transition: { duration: 0.3, ease: "easeOut" },
       }}
       animate={isDropped ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col">
-        <span className="absolute top-2 right-2 bg-lightBeige text-coral rounded-full px-3 py-1 text-sm font-bold shadow-md">
+        <span className="absolute top-2 right-2 bg-coral text-offWhite rounded-full px-3 py-1 text-sm font-bold shadow-md">
           ${menu.cost.toFixed(2)}
         </span>
         <span className="text-lg mt-8">{menu.name}</span>

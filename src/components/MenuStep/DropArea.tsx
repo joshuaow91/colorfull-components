@@ -1,5 +1,11 @@
 import { motion } from "framer-motion";
 import { DropAreaProps } from "../../propTypes/dropAreaPropTypes";
+import { DroppedItem } from "./DroppedItem";
+import {
+  handleDrop,
+  handleDragLeave,
+  handleDragOver,
+} from "../../utils/dragAndDropHandling";
 
 export default function DropArea({
   dropAreaRef,
@@ -7,22 +13,16 @@ export default function DropArea({
   setIsOverDropArea,
   isDragging,
   droppedItems,
+  removeItem,
+  isListView,
 }: DropAreaProps) {
   return (
     <motion.div
       ref={dropAreaRef}
-      className="border-2 border-dashed rounded-lg p-10 text-center text-gray-500 min-h-[150px]"
-      onDragOver={(e) => {
-        e.preventDefault();
-        setIsOverDropArea(true);
-      }}
-      onDragLeave={() => {
-        setIsOverDropArea(false);
-      }}
-      onDrop={(e) => {
-        e.preventDefault();
-        setIsOverDropArea(false);
-      }}
+      className="border-4 border-dashed rounded-xl p-10 flex justify-center items-center text-darkGreen min-h-[150px]"
+      onDragOver={(e) => handleDragOver(e, setIsOverDropArea)}
+      onDragLeave={() => handleDragLeave(setIsOverDropArea)}
+      onDrop={(e) => handleDrop(e, setIsOverDropArea)}
       animate={{
         borderColor: isDragging
           ? "#F59E0B"
@@ -33,21 +33,25 @@ export default function DropArea({
       }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      {isOverDropArea
-        ? "Release to add spend"
-        : "Drag and drop here to add spend"}
+      {droppedItems.length === 0 && (
+        <>
+          {isOverDropArea
+            ? "Release to add spend"
+            : isListView
+            ? "Add an item above to your cart"
+            : "Drag and drop here to add to your cart"}
+        </>
+      )}
 
       <div className="mt-4 grid grid-cols-4 gap-4">
         {droppedItems.map((item) => (
-          <div
+          <DroppedItem
             key={item.id}
-            className="p-4 rounded-xl bg-coral text-lightBeige font-bold relative"
-          >
-            <span className="absolute top-2 right-2 bg-lightBeige text-coral rounded-full px-3 py-1 text-sm font-bold shadow-md">
-              ${item.cost.toFixed(2)}
-            </span>
-            <span className="text-lg mt-8">{item.name}</span>
-          </div>
+            id={item.id}
+            name={item.name}
+            cost={item.cost}
+            removeItem={removeItem}
+          />
         ))}
       </div>
     </motion.div>
