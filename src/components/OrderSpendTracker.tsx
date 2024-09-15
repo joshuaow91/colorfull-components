@@ -6,6 +6,8 @@ import OrderSummary from "./SummaryStep/OrderSummary";
 import { MenuItem } from "../types/menuItemTypes";
 import BudgetInput from "./BudgetStep/BudgetInput";
 import { menuItemsForRestaurants } from "../data/menuItems";
+import Wrapper from "./Wrapper";
+import { ArrowRightCircleIcon } from "@heroicons/react/16/solid";
 
 export default function OrderSpendTracker() {
   const [step, setStep] = useState(1);
@@ -32,11 +34,11 @@ export default function OrderSpendTracker() {
   };
 
   return (
-    <div className="p-8 mx-auto text-zinc-900">
+    <div className="p-8 max-w-5xl mx-auto text-zinc-900">
       <ProgressTracker step={step} />
 
       {step > 1 && (
-        <button onClick={prevStep} className="pt-6">
+        <button onClick={prevStep} className="ml-4">
           {" "}
           &lsaquo; <span className="underline">Back</span>
         </button>
@@ -45,39 +47,45 @@ export default function OrderSpendTracker() {
       {step === 1 && <BudgetInput handleBudgetSubmit={handleBudgetSubmit} />}
 
       {step === 2 && (
-        <RestaurantSelection
-          onSelect={(id) => {
-            setSelectedRestaurant(id);
-            nextStep();
-          }}
-        />
+        <Wrapper>
+          <RestaurantSelection
+            onSelect={(id) => {
+              setSelectedRestaurant(id);
+              nextStep();
+            }}
+          />
+        </Wrapper>
       )}
 
       {step === 3 && selectedRestaurant && (
-        <MenuStep
-          menuItems={menuItemsForRestaurants[selectedRestaurant]}
-          budget={budget as number}
-          spend={spend}
-          setSpend={setSpend}
-          progress={progress}
-          setProgress={setProgress}
-          overBudget={overBudget}
-          setOverBudget={setOverBudget}
-          setOrderedItems={setOrderedItems}
-        />
+        <Wrapper>
+          <MenuStep
+            menuItems={menuItemsForRestaurants[selectedRestaurant]}
+            budget={budget as number}
+            spend={spend}
+            setSpend={setSpend}
+            progress={progress}
+            setProgress={setProgress}
+            overBudget={overBudget}
+            setOverBudget={setOverBudget}
+            setOrderedItems={setOrderedItems}
+          />
+        </Wrapper>
       )}
 
       {step === 4 && (
-        <OrderSummary
-          items={orderedItems}
-          time={deliveryTime}
-          setTime={setDeliveryTime}
-        />
+        <Wrapper>
+          <OrderSummary
+            items={orderedItems}
+            time={deliveryTime}
+            setTime={setDeliveryTime}
+          />
+        </Wrapper>
       )}
 
       {step > 2 && step < 4 && (
         <button onClick={nextStep} className="flex justify-end w-full pt-6">
-          <span className="underline">Next</span> &rsaquo;
+          <ArrowRightCircleIcon className="h-12 w-12 text-coral" />
         </button>
       )}
     </div>

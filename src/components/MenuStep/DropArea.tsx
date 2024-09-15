@@ -11,7 +11,7 @@ export default function DropArea({
   return (
     <motion.div
       ref={dropAreaRef}
-      className="border-2 rounded-lg p-10 text-center text-gray-500 min-h-[150px]"
+      className="border-2 border-dashed rounded-lg p-10 text-center text-gray-500 min-h-[150px]"
       onDragOver={(e) => {
         e.preventDefault();
         setIsOverDropArea(true);
@@ -22,7 +22,6 @@ export default function DropArea({
       onDrop={(e) => {
         e.preventDefault();
         setIsOverDropArea(false);
-        console.log("Item dropped");
       }}
       animate={{
         borderColor: isDragging
@@ -30,7 +29,7 @@ export default function DropArea({
           : isOverDropArea
           ? "#38A169"
           : "#CBD5E0",
-        backgroundColor: isDragging ? "rgba(255, 165, 0, 0.1)" : "#FFF",
+        backgroundColor: isDragging ? "rgba(255, 165, 0, 0.1)" : "#edf7e1",
       }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
@@ -38,13 +37,16 @@ export default function DropArea({
         ? "Release to add spend"
         : "Drag and drop here to add spend"}
 
-      <div className="mt-4">
+      <div className="mt-4 grid grid-cols-4 gap-4">
         {droppedItems.map((item) => (
           <div
             key={item.id}
-            className="text-center p-2 bg-gray-100 rounded-lg mb-2 pointer-events-none"
+            className="p-4 rounded-xl bg-coral text-lightBeige font-bold relative"
           >
-            {item.name} - ${item.cost.toFixed(2)}
+            <span className="absolute top-2 right-2 bg-lightBeige text-coral rounded-full px-3 py-1 text-sm font-bold shadow-md">
+              ${item.cost.toFixed(2)}
+            </span>
+            <span className="text-lg mt-8">{item.name}</span>
           </div>
         ))}
       </div>
