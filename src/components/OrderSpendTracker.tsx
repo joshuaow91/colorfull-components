@@ -34,6 +34,13 @@ export default function OrderSpendTracker() {
     nextStep();
   };
 
+  const handleDrop = (menuItem: MenuItem) => {
+    const newSpend = spend + menuItem.cost;
+    const newDroppedItems = [...orderedItems, menuItem];
+    setSpend(newSpend);
+    setOrderedItems(newDroppedItems);
+  };
+
   return (
     <div className="p-8 max-w-5xl mx-auto text-zinc-900 w-full">
       <ProgressTracker step={step} />
@@ -72,6 +79,7 @@ export default function OrderSpendTracker() {
         <Wrapper>
           <MenuStep
             menuItems={menuItemsForRestaurants[selectedRestaurant]}
+            handleDrop={handleDrop}
             budget={budget as number}
             spend={spend}
             setSpend={setSpend}

@@ -27,7 +27,7 @@ export default function SpendTrack({
 
       <div className="w-full h-8 bg-gray-200 rounded-full overflow-hidden relative">
         <motion.div
-          className="h-full bg-gradient-to-r from-orange-400 to-green-500 rounded-full"
+          className="h-full bg-colorfull-gradient rounded-full"
           style={{ width: `${progress}%` }}
           animate={{ width: `${progress}%` }}
           transition={{ ease: "linear", duration: 0.5 }}

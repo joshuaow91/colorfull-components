@@ -1,14 +1,40 @@
 import { motion, useMotionValue } from "framer-motion";
 import { useState } from "react";
-import { MenuSelectionProps } from "../../propTypes/menuSelectionPropTypes";
+import { MenuGridViewProps } from "../../interfaces/menuInterfaces";
 import { MenuItem } from "../../types/menuItemTypes";
 
-export default function MenuSelection({
+export default function MenuGridView({
+  menuItems,
+  handleDrop,
+  dropAreaRef,
+  setIsDragging,
+}: MenuGridViewProps) {
+  return (
+    <div className="grid grid-cols-4 gap-4">
+      {menuItems.map((menuItem) => (
+        <MenuItemWithDropAnimation
+          key={menuItem.id}
+          menu={menuItem}
+          handleDrop={handleDrop}
+          dropAreaRef={dropAreaRef}
+          setIsDragging={setIsDragging}
+        />
+      ))}
+    </div>
+  );
+}
+
+function MenuItemWithDropAnimation({
   menu,
   handleDrop,
   dropAreaRef,
   setIsDragging,
-}: MenuSelectionProps) {
+}: {
+  menu: MenuItem;
+  handleDrop: (menuItem: MenuItem) => void;
+  dropAreaRef: React.RefObject<HTMLDivElement>;
+  setIsDragging: (isDragging: boolean) => void;
+}) {
   const [isDropped, setIsDropped] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);

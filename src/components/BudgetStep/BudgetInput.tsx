@@ -1,5 +1,6 @@
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { ArrowRightCircleIcon } from "@heroicons/react/16/solid";
 import { BudgetInputProps, FormValues } from "../../types/budgetTypes";
 import { handleInputChange } from "../../utils/formatBudgetInput";
@@ -18,7 +19,12 @@ export default function BudgetInput({ handleBudgetSubmit }: BudgetInputProps) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-5xl mt-16 mx-auto">
+    <motion.div
+      className="flex flex-col items-center justify-center max-w-5xl mt-16 mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
+    >
       <h2 className="font-bold font-righteous text-4xl text-darkGreen tracking-tighter text-center">
         Set Spend Budget
       </h2>
@@ -52,6 +58,6 @@ export default function BudgetInput({ handleBudgetSubmit }: BudgetInputProps) {
           </button>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }

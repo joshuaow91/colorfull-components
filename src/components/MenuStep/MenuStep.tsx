@@ -1,16 +1,15 @@
 import { useRef, useState } from "react";
-import MenuSelection from "./MenuItems";
 import DropArea from "./DropArea";
 import SpendTrack from "./SpendTrackGradientBar";
-import { MenuStepProps } from "../../propTypes/menuStepPropTypes";
+import { MenuStepProps } from "../../interfaces/menuInterfaces";
 import { MenuItem } from "../../types/menuItemTypes";
-import { motion } from "framer-motion";
 import {
   ListBulletIcon,
-  PlusCircleIcon,
   TrashIcon,
   ViewColumnsIcon,
 } from "@heroicons/react/16/solid";
+import MenuListView from "./MenuListView";
+import MenuGridView from "./MenuGridView";
 
 export default function MenuStep({
   menuItems,
@@ -93,41 +92,14 @@ export default function MenuStep({
       </div>
 
       {isGridView ? (
-        <div className="grid grid-cols-4 gap-2 mb-4">
-          {menuItems.map((menuItem) => (
-            <MenuSelection
-              key={menuItem.id}
-              menu={menuItem}
-              handleDrop={handleDrop}
-              dropAreaRef={dropAreaRef}
-              setIsDragging={setIsDragging}
-            />
-          ))}
-        </div>
+        <MenuGridView
+          menuItems={menuItems}
+          handleDrop={handleDrop}
+          dropAreaRef={dropAreaRef}
+          setIsDragging={setIsDragging}
+        />
       ) : (
-        <div className="flex flex-col gap-y-2 mb-4">
-          {menuItems.map((menuItem) => (
-            <motion.div
-              key={menuItem.id}
-              className="flex justify-between w-full items-center bg-offWhite text-coral font-semibold p-4 rounded-xl shadow-md"
-              whileHover={{ boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)" }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="space-x-4">
-                <span className="text-lg font-bold bg-coral text-offWhite p-2 px-4 rounded-md">
-                  ${menuItem.cost.toFixed(2)}
-                </span>
-                <span className="text-xl">{menuItem.name} </span>
-              </div>
-              <button
-                onClick={() => handleDrop(menuItem)}
-                className="flex items-center bg-green-500 text-white px-3 py-1 rounded-full shadow-md hover:bg-green-600"
-              >
-                <PlusCircleIcon className="h-4 w-4 mr-2" /> Add
-              </button>
-            </motion.div>
-          ))}
-        </div>
+        <MenuListView menuItems={menuItems} handleDrop={handleDrop} />
       )}
 
       <DropArea

@@ -27,6 +27,12 @@ export default {
       animation: {
         "bg-position": "bg-position 5s ease infinite",
       },
+      backgroundImage: {
+        "colorfull-gradient":
+          "linear-gradient(90deg, #F56F6C, #FDB769, #FDE086, #A0D8A1)",
+        "colorfull-gradient-logo":
+          "linear-gradient(90deg, rgba(245, 111, 108, 0.8), rgba(253, 183, 105, 0.8), rgba(253, 224, 134, 0.8), rgba(160, 216, 161, 0.8))",
+      },
     },
   },
 

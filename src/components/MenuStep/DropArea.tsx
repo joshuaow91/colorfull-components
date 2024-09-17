@@ -19,7 +19,7 @@ export default function DropArea({
   return (
     <motion.div
       ref={dropAreaRef}
-      className="border-4 border-dashed rounded-xl p-10 flex justify-center items-center text-darkGreen min-h-[150px]"
+      className="border-4 mt-8 border-dashed rounded-xl p-10 flex justify-center items-center text-darkGreen min-h-[150px]"
       onDragOver={(e) => handleDragOver(e, setIsOverDropArea)}
       onDragLeave={() => handleDragLeave(setIsOverDropArea)}
       onDrop={(e) => handleDrop(e, setIsOverDropArea)}
