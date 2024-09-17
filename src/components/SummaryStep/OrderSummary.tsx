@@ -77,7 +77,7 @@ export default function OrderSummary({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute z-10 mt-2 w-full bg-white border rounded-lg shadow-lg max-h-36 overflow-auto"
+                    className="absolute z-10 mt-2 w-full bg-white border rounded-lg shadow-lg max-h-40 overflow-auto"
                   >
                     {timeOptions.map((option, idx) => (
                       <li

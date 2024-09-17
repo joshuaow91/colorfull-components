@@ -8,7 +8,7 @@ export const generateTimeOptions = () => {
   const options = ["ASAP (15 mins)"];
   const currentTime = getRoundedTime(new Date());
 
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 2; i <= 6; i++) {
     const nextTime = new Date(currentTime.getTime() + i * 15 * 60000);
     const timeString = nextTime.toLocaleTimeString([], {
       hour: "2-digit",

@@ -34,13 +34,13 @@ export default function DropArea({
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
       {droppedItems.length === 0 && (
-        <>
+        <span className="font-bold">
           {isOverDropArea
             ? "Release to add spend"
             : isListView
             ? "Add an item above to your cart"
             : "Drag and drop here to add to your cart"}
-        </>
+        </span>
       )}
 
       <div className="mt-4 grid grid-cols-4 gap-4">
