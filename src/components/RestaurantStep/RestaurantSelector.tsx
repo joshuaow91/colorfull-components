@@ -12,7 +12,7 @@ export default function RestaurantSelection({
         Choose a Restaurant
       </h2>
 
-      <div className="grid grid-cols-3 gap-4 ">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 ">
         {restaurants.map((restaurant) => (
           <motion.div
             key={restaurant.id}

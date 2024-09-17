@@ -3,10 +3,10 @@ import { ProgressTrackerProps } from "../propTypes/progressTrackerPropTypes";
 
 export default function ProgressTracker({ step }: ProgressTrackerProps) {
   const steps = [
-    "Set Budget",
-    "Select Restaurant",
-    "Choose Menu Items",
-    "Review Order",
+    "Budget",
+    "Restaurant",
+    "Menu Items",
+    "Review",
   ];
 
   return (
@@ -19,7 +19,7 @@ export default function ProgressTracker({ step }: ProgressTrackerProps) {
               index <= step - 1 ? "text-darkGreen" : "text-gray-900"
             } after:content-[''] after:w-full after:h-0.5 ${
               index < step - 1 ? "after:bg-darkGreen" : "after:bg-gray-200"
-            } after:inline-block after:absolute lg:after:top-5 after:top-3 after:left-28 ${
+            } after:inline-block after:absolute lg:after:top-5 after:top-3 after:left-10 md:after:left-28 ${
               index === steps.length - 1 ? "after:w-0 after:hidden" : ""
             }`}
           >

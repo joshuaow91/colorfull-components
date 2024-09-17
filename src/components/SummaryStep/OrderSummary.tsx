@@ -29,7 +29,7 @@ export default function OrderSummary({
   };
 
   return (
-    <div className="relative max-w-5xl min-w-96">
+    <div className="relative max-w-5xl sm:min-w-96">
       {isLoading && (
         <motion.div
           className="absolute inset-0 bg-colorfull-gradient z-0 rounded-2xl"

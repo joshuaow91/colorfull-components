@@ -43,7 +43,7 @@ export default function DropArea({
         </span>
       )}
 
-      <div className="mt-4 grid grid-cols-4 gap-4">
+      <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
         {droppedItems.map((item) => (
           <DroppedItem
             key={item.id}

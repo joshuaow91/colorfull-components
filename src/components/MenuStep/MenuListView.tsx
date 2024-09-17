@@ -17,11 +17,13 @@ export default function MenuListView({ menuItems, handleDrop }: MenuProps) {
             alt={menuItem.name}
             className="w-24 h-24 rounded-lg mr-4"
           />
+
+          <div className="flex flex-col md:flex-row justify-between w-full">
           <div className="flex-1">
             <h3 className="text-xl font-bold">{menuItem.name}</h3>
             <p className="text-sm text-gray-600">{menuItem.description}</p>
           </div>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex justify-between sm:flex-col items-center gap-4 mt-4 sm:mt-0">
             <span className="text-lg font-bold">
               ${menuItem.cost.toFixed(2)}
             </span>
@@ -31,6 +33,7 @@ export default function MenuListView({ menuItems, handleDrop }: MenuProps) {
             >
               <PlusCircleIcon className="h-4 w-4 mr-2" /> Add
             </button>
+          </div>
           </div>
         </motion.div>
       ))}

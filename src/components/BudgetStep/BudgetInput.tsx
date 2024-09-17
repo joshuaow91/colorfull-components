@@ -29,7 +29,7 @@ export default function BudgetInput({ handleBudgetSubmit }: BudgetInputProps) {
         Set Spend Budget
       </h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-3xl">
         <div className="flex justify-center">
           <Controller
             name="inputBudget"
@@ -43,7 +43,7 @@ export default function BudgetInput({ handleBudgetSubmit }: BudgetInputProps) {
                   handleInputChange(e.target.value, setDisplayValue, setValue)
                 }
                 inputMode="numeric"
-                className="text-8xl sm:text-9xl font-bold font-righteous bg-transparent border-none outline-none focus:ring-0 appearance-none transition-colors duration-300 text-darkGreen text-center"
+                className="text-6xl sm:text-9xl max-w-xs md:max-w-4xl font-bold font-righteous bg-transparent border-none outline-none focus:ring-0 appearance-none transition-colors duration-300 text-darkGreen text-center"
               />
             )}
           />

@@ -42,14 +42,14 @@ export default function OrderSpendTracker() {
   };
 
   return (
-    <div className="p-8 max-w-5xl mx-auto text-zinc-900 w-full">
+    <div className="p-4 sm:p-8 max-w-5xl mx-auto text-zinc-900 w-full">
       <ProgressTracker step={step} />
 
       {step > 1 && (
         <motion.button
           key={step}
           onClick={prevStep}
-          className="ml-12 mt-4"
+          className="ml-4 sm:ml-12 mt-4"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
