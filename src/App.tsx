@@ -1,4 +1,4 @@
-import Hero from "./components/Hero";
+import Hero from "./components/Hero/Hero";
 import OrderSpendTracker from "./components/OrderSpendTracker";
 
 export default function App() {
