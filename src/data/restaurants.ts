@@ -1,41 +1,34 @@
 import { Restaurant } from "../types/restaurantTypes";
 
-import pizzaImage from "../../public/pizza2.png";
-import sushiImage from "../../public/sushi2.png";
-import burgerImage from "../../public/burger2.png";
-import tacoImage from "../../public/taco2.png";
-import pastaImage from "../../public/pasta2.png";
-import saladImage from "../../public/salad2.png";
-
 export const restaurants: Restaurant[] = [
   {
     id: 1,
     name: "Pizza Place",
-    image: pizzaImage,
+    image: "/pizza2.png",
   },
   {
     id: 2,
     name: "Sushi House",
-    image: sushiImage,
+    image: "/sushi2.png",
   },
   {
     id: 3,
     name: "Burger Joint",
-    image: burgerImage,
+    image: "/burger2.png",
   },
   {
     id: 4,
     name: "Taco Spot",
-    image: tacoImage,
+    image: "/taco2.png",
   },
   {
     id: 5,
     name: "Pasta Corner",
-    image: pastaImage,
+    image: "/pasta2.png",
   },
   {
     id: 6,
     name: "Salad Bar",
-    image: saladImage,
+    image: "/salad2.png",
   },
 ];
