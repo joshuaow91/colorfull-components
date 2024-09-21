@@ -11,7 +11,7 @@ export default {
         offWhite: "#fcfcf9",
       },
       fontFamily: {
-        righteous: ["Righteous", "cursive"],
+        righteous: ["Righteous"],
         sans: ["Open Sans", "sans-serif"],
       },
       boxShadow: {
